@@ -8,8 +8,9 @@ public class Humano {
     private String nombre;
     private Integer edad;
     private Integer peso;
-    Orinar orinar;
-    Beber beber;
+    private Orinar orinar;
+    private Beber beber;
+    private Integer cantidad_cerveza = 0;
 
     public Humano(String nombre, Integer edad, Integer peso, Orinar orinar, Beber beber) {
         this.nombre = nombre;
@@ -57,5 +58,13 @@ public class Humano {
 
     public void setBeber(Beber beber) {
         this.beber = beber;
+    }
+
+    public Integer getCantidad_cerveza() {
+        return cantidad_cerveza;
+    }
+
+    public void setCantidad_cerveza(Integer cantidad_cerveza) {
+        this.cantidad_cerveza = cantidad_cerveza;
     }
 }

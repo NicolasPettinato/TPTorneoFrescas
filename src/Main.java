@@ -1,3 +1,4 @@
+import Dao.ConexionMySQL;
 import Model.*;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,20 +20,29 @@ public class Main {
         espartanos.add(new Espartano("Icarus",27,68, new OrinarEspartanoImp(),new BeberEspartanoImp(),5));
         espartanos.add(new Espartano("Thanos",36,70, new OrinarEspartanoImp(),new BeberEspartanoImp(),2));
 
-        List<Vikingo> listOrdVikingos = vikingos.stream().sorted(Comparator.comparing(Vikingo::getPeso)).collect(Collectors.toList());
-        List<Espartano> listOrdEspartanos = espartanos.stream().sorted(Comparator.comparing(Espartano::getPeso)).collect(Collectors.toList());
+        //List<Vikingo> listOrdVikingos = vikingos.stream().sorted(Comparator.comparing(Vikingo::getPeso)).collect(Collectors.toList());
+        //List<Espartano> listOrdEspartanos = espartanos.stream().sorted(Comparator.comparing(Espartano::getPeso)).collect(Collectors.toList());
+
+        vikingos.sort(Comparator.comparing(Vikingo::getPeso));
+        espartanos.sort(Comparator.comparing(Espartano::getPeso));
 
         System.out.println(" Equipo Vikingos: ");
-        for(int i = 0 ; i < listOrdVikingos.size(); i++){ ;
-            Vikingo vik = listOrdVikingos.get(i);
+        for(int i = 0 ; i < vikingos.size(); i++){ ;
+            Vikingo vik = vikingos.get(i);
             System.out.print("      Nombre: " + vik.getNombre() + " Peso: " + vik.getPeso() + " Edad: " + vik.getEdad()+ "\n");
         }
         System.out.print("\n");
         System.out.println(" Equipo Espartanos: ");
-        for(int i = 0 ; i < listOrdEspartanos.size(); i++){ ;
-            Espartano esp = listOrdEspartanos.get(i);
+        for(int i = 0 ; i < espartanos.size(); i++){ ;
+            Espartano esp = espartanos.get(i);
             System.out.print("      Nombre: " + esp.getNombre() + " Peso: " + esp.getPeso() + " Edad: " + esp.getEdad()+ "\n");
         }
+
+
+        Batalla batalla = new Batalla(vikingos,espartanos);
+        batalla.inicio();
+
+        //TODO recuperar los resultados de la db
 
     }
 }
